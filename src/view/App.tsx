@@ -2,7 +2,7 @@ import { ThemeProvider } from "styled-components";
 import Routes from "./routes/Routes";
 import theme from "./theme";
 import GlobalStyle from "./globalStyle";
-import { StateProvider } from "../state"
+import { StateProvider } from "../state";
 
 const App: React.FC = () => {
   return (
@@ -16,4 +16,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-

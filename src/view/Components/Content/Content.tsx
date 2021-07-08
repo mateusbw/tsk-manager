@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import theme from "../../theme";
 import Text from "../Text/Text";
 
 const BaseContent = styled.div`
@@ -14,28 +13,29 @@ const BaseContent = styled.div`
 
 const Page = styled.div`
   flex: 1;
-`
+`;
 
 const Footer = styled.div`
   width: 100%;
   text-align: center;
-  border-top: 1px solid ${({theme}) => theme.colors.gray[750]};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray[750]};
   padding: 20px;
 `;
 
 type Props = {
-  children: React.ReactNode
+  children: React.ReactNode;
 };
-const Content = ({ children }:Props) => {
+const Content = ({ children }: Props) => {
   return (
     <BaseContent>
-      <Page>
-        { children }
-      </Page>
+      <Page>{children}</Page>
       <Footer>
-        <Text as="p" variant="small" fontWeight={theme.fontWeights.thin}>Developed by Outboxup</Text>
+        <Text as="p" variant="small" fontWeight="300">
+          Developed by Outboxup
+        </Text>
       </Footer>
-    </BaseContent>)
-}
+    </BaseContent>
+  );
+};
 
-export default Content
+export default Content;

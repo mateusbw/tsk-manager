@@ -3,7 +3,7 @@ const colors = {
     750: "#414052",
     850: "#272733",
     900: "#21212B",
-    950: "#181820"
+    950: "#181820",
   },
   purple: "#AC6DDE",
   red: "#f93c3c",
@@ -28,7 +28,7 @@ const fontWeights = {
   thin: "300",
   medium: "400",
   semiBold: "600",
-}
+};
 
 const theme = { colors, spaces, fontSizes, fontWeights };
 
