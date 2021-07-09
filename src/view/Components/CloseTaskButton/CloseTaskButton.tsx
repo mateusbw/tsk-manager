@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import styled, { css, keyframes } from "styled-components";
 import Button from "../Button/Button";
 
@@ -17,6 +18,9 @@ const BaseCloseTaskButton = styled(Button)<BaseCloseTaskButtonProps>`
   border: 3px solid ${(props) => props.theme.colors.purple};
   position: relative;
   margin-right: 20px;
+  &:hover {
+    background-color: ${(props) => darken(0.1, props.theme.colors.purple)};
+  }
 
   &::after {
     content: "";

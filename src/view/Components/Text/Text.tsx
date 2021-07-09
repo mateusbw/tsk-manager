@@ -1,19 +1,18 @@
 import styled, { css } from "styled-components";
 import {
-  SpaceProps,
   space,
   fontWeight,
   FontWeightProps,
   ColorProps,
   color,
 } from "styled-system";
+import { CustomComponent } from "../Card/types/CustomCompent";
 
 type Variant = "large" | "medium" | "small";
 type Props = {
   variant?: Variant;
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
-  children?: React.ReactNode;
-} & SpaceProps &
+} & CustomComponent &
   FontWeightProps &
   ColorProps;
 
@@ -118,6 +117,5 @@ const Text = ({ variant, as, children, ...styleProps }: Props) => {
 Text.defaultProps = {
   variant: "large",
   as: "h1",
-  children: "",
 };
 export default Text;

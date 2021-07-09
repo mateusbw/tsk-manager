@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TaskCard/> matches   snapshot 1`] = `
+<div>
+  <div
+    class="sc-jrsJWt bpNRWa sc-dIsUp ktQXLX"
+  >
+    <div
+      class="sc-kEqXSa hPuJQS"
+      display="flex"
+    >
+      <div
+        class="sc-bdnxRM dQuBew"
+      >
+        <button
+          class="sc-fujyAs jEaHlk sc-pNWdM gmOIvx"
+        />
+        <h2
+          class="sc-dlnjwi cdEQQn"
+          font-weight="600"
+        >
+          Title
+        </h2>
+      </div>
+      <button
+        class="sc-fujyAs bOHUEs"
+      >
+        <svg>
+          dots.svg
+        </svg>
+      </button>
+    </div>
+    <div
+      class="sc-iqAclL imHOEE"
+    >
+      <p
+        class="sc-iCoGMd fCDwTH"
+      >
+        Description
+      </p>
+    </div>
+    <div
+      class="sc-crzoAE iUJPTx"
+    >
+      <p
+        class="sc-iCoGMd fIWBnv"
+        font-weight="300"
+      >
+        Created 
+        Apr 7, 2019, 7:20 AM
+      </p>
+    </div>
+  </div>
+</div>
+`;

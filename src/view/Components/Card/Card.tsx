@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { SpaceProps, space } from "styled-system";
+import { space } from "styled-system";
+import { CustomComponent } from "./types/CustomCompent";
 
 const BaseCard = styled.div`
   width: 100%;
@@ -10,11 +11,7 @@ const BaseCard = styled.div`
   ${space}
 `;
 
-type Props = {
-  children: React.ReactNode;
-} & SpaceProps;
-
-const Card = ({ children, ...style }: Props) => {
+const Card = ({ children, ...style }: CustomComponent) => {
   return <BaseCard {...style}>{children}</BaseCard>;
 };
 

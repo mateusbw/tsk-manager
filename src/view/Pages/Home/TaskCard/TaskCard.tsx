@@ -35,7 +35,11 @@ type Props = {
 
 const TaskCard = ({ task, markAsClosed, markAsToDo }: Props) => {
   return (
-    <BaseTaskCard mb="20px" isClosed={isTaskClosed(task)}>
+    <BaseTaskCard
+      mb="20px"
+      isClosed={isTaskClosed(task)}
+      data-testid="task-card"
+    >
       <CardHeader display="flex" justifyContent="space-between">
         <Flex alignItems="center">
           <CloseTaskButton

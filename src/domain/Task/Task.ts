@@ -10,7 +10,7 @@ export type Task = {
   title: string;
   description: string;
   status: Status;
-  createdAt: Date;
+  createdAt: number;
 };
 
 export const newTask = (title: string, description: string): Task => ({
@@ -18,7 +18,7 @@ export const newTask = (title: string, description: string): Task => ({
   title,
   description,
   status: Status.ToDo,
-  createdAt: new Date(),
+  createdAt: Date.now(),
 });
 
 export const closeTask = (task: Task): Task => ({

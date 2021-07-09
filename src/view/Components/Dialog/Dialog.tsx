@@ -3,6 +3,7 @@ import { transparentize } from "polished";
 import Button from "../Button/Button";
 
 import { ReactComponent as CloseIcon } from "../../../assets/icons/close.svg";
+import { CustomComponent } from "../Card/types/CustomCompent";
 
 const fadeIn = keyframes`
     0% { opacity: 0; visibility: hidden}
@@ -67,15 +68,19 @@ const CloseButton = styled(Button)`
   right: 20px;
 `;
 
-type ButtonProps = {
-  children: React.ReactNode;
+type DialogProps = {
   isOpened: boolean;
   onClose: () => void;
-};
+} & CustomComponent;
 
-const Dialog = ({ children, isOpened, onClose }: ButtonProps) => {
+const Dialog = ({
+  children,
+  isOpened,
+  onClose,
+  ...customProps
+}: DialogProps) => {
   return (
-    <Background isOpened={isOpened}>
+    <Background isOpened={isOpened} {...customProps}>
       <BaseDialog isOpened={isOpened}>
         <CloseButton callBack={() => onClose()} variant="icon">
           <CloseIcon />

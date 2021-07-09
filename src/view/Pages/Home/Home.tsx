@@ -60,7 +60,11 @@ const Home: React.FC = () => {
             tsk.
           </Text>
         </Flex>
-        <Button variant="primary" callBack={() => setOpenedDialog(true)}>
+        <Button
+          variant="primary"
+          callBack={() => setOpenedDialog(true)}
+          data-testid="new-task"
+        >
           New Task
         </Button>
       </Flex>
@@ -105,7 +109,11 @@ const Home: React.FC = () => {
         )}
       </Flex>
 
-      <Dialog isOpened={openedDialog} onClose={() => setOpenedDialog(false)}>
+      <Dialog
+        isOpened={openedDialog}
+        onClose={() => setOpenedDialog(false)}
+        data-testid="new-task-dialog"
+      >
         <Text
           as="p"
           variant="medium"
@@ -121,6 +129,7 @@ const Home: React.FC = () => {
             name="title"
             mb="20px"
             errors={errors}
+            data-testid="title-input"
           />
           <TextArea
             placeholder="Description"
@@ -128,9 +137,10 @@ const Home: React.FC = () => {
             name="description"
             rows={10}
             errors={errors}
+            data-testid="description-input"
           />
-          <Button variant="primary" mt="20px">
-            New Task
+          <Button variant="primary" mt="20px" block data-testid="save-button">
+            Save
           </Button>
         </form>
       </Dialog>

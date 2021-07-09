@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import { darken, lighten } from "polished";
-import { SpaceProps, space } from "styled-system";
+import { space } from "styled-system";
+import { CustomComponent } from "../Card/types/CustomCompent";
 
 type Props = {
-  children?: React.ReactNode;
   variant?: "primary" | "secondary" | "inverted" | "icon";
   callBack?: () => void;
-} & SpaceProps;
+  block?: boolean;
+} & CustomComponent;
 
 const BaseButton = styled.button<Props>`
   font-weight: 600;
@@ -62,16 +63,15 @@ const BaseButton = styled.button<Props>`
         border-color: ${props.theme.colors.purple};
       }
     `}
-
+    ${(props) =>
+    props.block &&
+    css`
+      width: 100%;
+    `}
     ${space}
 `;
 
-const Button = ({
-  children,
-  callBack,
-  variant = "primary",
-  ...style
-}: Props) => {
+const Button = ({ children, callBack, variant, ...style }: Props) => {
   return (
     <BaseButton
       onClick={() => callBack && callBack()}
@@ -84,9 +84,9 @@ const Button = ({
 };
 
 Button.defaultProps = {
-  variant: "primary",
+  variant: "",
   callBack: undefined,
-  children: "",
+  block: false,
 };
 
 export default Button;

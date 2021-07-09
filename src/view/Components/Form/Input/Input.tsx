@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { SpaceProps, space } from "styled-system";
+import { space } from "styled-system";
+import { CustomComponent } from "../../Card/types/CustomCompent";
 
 export const BaseInput = css<{ hasError: boolean }>`
   ${space}
@@ -36,7 +37,7 @@ type InputProps = {
   name: string;
   placeholder?: string;
   errors?: any;
-} & SpaceProps;
+} & CustomComponent;
 
 const Input = ({
   register,
