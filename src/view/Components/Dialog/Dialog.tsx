@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import { transparentize } from "polished";
+import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 
 import { ReactComponent as CloseIcon } from "../../../assets/icons/close.svg";
@@ -21,7 +22,7 @@ const slideOut = keyframes`
     0% { transform: translateY(100px); }
     100% { transform: translateY(200%); }
 `;
-type BackgroundProps = { isOpened: boolean };
+type BackgroundProps = { isOpened: boolean; firstCalled: boolean };
 const Background = styled.div<BackgroundProps>`
   position: absolute;
 
@@ -35,31 +36,42 @@ const Background = styled.div<BackgroundProps>`
   overflow: hidden;
   background-color: ${(props) =>
     transparentize(0.1, props.theme.colors.gray[950])};
-  ${(props) =>
-    props.isOpened
-      ? css`
-          animation: ${fadeIn} 0.5s forwards;
-        `
-      : css`
-          animation: ${fadeOut} 0.5s forwards;
-        `}
+
+  ${(props) => {
+    if (props.firstCalled) {
+      return props.isOpened && props.firstCalled
+        ? css`
+            animation: ${fadeIn} 0.5s forwards;
+          `
+        : css`
+            animation: ${fadeOut} 0.5s forwards;
+          `;
+    }
+    return css`
+      display: none;
+    `;
+  }}
 `;
 
-type BaseDialogProps = { isOpened: boolean };
+type BaseDialogProps = { isOpened: boolean; firstCalled: boolean };
 const BaseDialog = styled.div<BaseDialogProps>`
   position: relative;
   padding: 60px 48px;
   max-width: 576px;
   background-color: ${(props) => props.theme.colors.gray[900]};
   border-radius: 20px;
-  ${(props) =>
-    props.isOpened
-      ? css`
-          animation: ${slideIn} 0.5s forwards;
-        `
-      : css`
-          animation: ${slideOut} 0.5s forwards;
-        `}
+  ${(props) => {
+    if (props.firstCalled) {
+      return props.isOpened
+        ? css`
+            animation: ${slideIn} 0.5s forwards;
+          `
+        : css`
+            animation: ${slideOut} 0.5s forwards;
+          `;
+    }
+    return "";
+  }}
 `;
 
 const CloseButton = styled(Button)`
@@ -79,9 +91,15 @@ const Dialog = ({
   onClose,
   ...customProps
 }: DialogProps) => {
+  const [firstCalled, setfirstCalled] = useState(false);
+
+  useEffect(() => {
+    if (isOpened && !firstCalled) setfirstCalled(true);
+  }, [isOpened]);
+
   return (
-    <Background isOpened={isOpened} {...customProps}>
-      <BaseDialog isOpened={isOpened}>
+    <Background isOpened={isOpened} firstCalled={firstCalled} {...customProps}>
+      <BaseDialog isOpened={isOpened} firstCalled={firstCalled}>
         <CloseButton callBack={() => onClose()} variant="icon">
           <CloseIcon />
         </CloseButton>
