@@ -1,31 +1,42 @@
-import { useContext } from "react";
-import { Task } from "../../domain/Task/Task";
-import { StateContext } from "..";
+import { useDispatch, useSelector } from "react-redux";
+import { newTask, Task } from "../../domain/Task/Task";
 import {
-  addTask,
-  markAsClosed as markAsClosedAction,
-  markAsToDo as markAsToDoAction,
+  getTasksSelector,
+  getTasks as getTasksAction,
+  createTask,
+  closeTask,
+  openTask,
 } from "./task";
 
 const useTask = () => {
-  const { store, dispatch } = useContext(StateContext);
+  const dispatch = useDispatch();
+  const tasks = useSelector(getTasksSelector);
+
   const addNewTask = ({
     title,
     description,
   }: {
     title: string;
     description: string;
-  }) => dispatch(addTask(title, description));
-  const markAsClosed = (task: Task) => {
-    dispatch(markAsClosedAction(task));
+  }) => {
+    const task = newTask(title, description);
+    dispatch(createTask(task));
   };
+
+  const getTasks = () => dispatch(getTasksAction());
+
+  const markAsClosed = (task: Task) => {
+    dispatch(closeTask(task));
+  };
+
   const markAsToDo = (task: Task) => {
-    dispatch(markAsToDoAction(task));
+    dispatch(openTask(task));
   };
 
   return {
-    tasks: store.tasks,
+    tasks,
     addNewTask,
+    getTasks,
     markAsClosed,
     markAsToDo,
   };

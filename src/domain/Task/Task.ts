@@ -13,6 +13,12 @@ export type Task = {
   createdAt: number;
 };
 
+export type TaskRepository = {
+  getTasks: () => Array<Task>;
+  createTask: (task: Task) => Task;
+  updateTask: (task: Task) => Task;
+};
+
 export const newTask = (title: string, description: string): Task => ({
   id: uuidv4(),
   title,

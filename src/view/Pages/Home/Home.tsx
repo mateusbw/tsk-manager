@@ -19,7 +19,7 @@ import useTask from "../../../state/task/useTask";
 import { Status, Task } from "../../../domain/Task/Task";
 
 const Home: React.FC = () => {
-  const { tasks, addNewTask, markAsClosed, markAsToDo } = useTask();
+  const { tasks, getTasks, addNewTask, markAsClosed, markAsToDo } = useTask();
   const {
     register,
     handleSubmit,
@@ -36,6 +36,10 @@ const Home: React.FC = () => {
     setOpenedDialog(false);
     reset();
   };
+
+  useEffect(() => {
+    getTasks();
+  }, []);
 
   useEffect(() => {
     setTask(tasks.filter((task) => task.status === taskTypeFilter));
